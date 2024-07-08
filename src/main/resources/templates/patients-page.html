@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="template">
+<head>
+    <meta charset="UTF-8">
+    <title>patients page</title>
+    <link rel="stylesheet" href="webjars/bootstrap/5.3.3/css/bootstrap.min.css">
+</head>
+<body>
+<div layout:fragment="content">
+
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h4>patients:</h4>
+            </div>
+            <div class="card-body">
+                <form method="get" th:action="@{/user/index-page}" class="w-50 ">
+                    <div class="input-group">
+                        <label class="input-group-text">Keyword</label>
+                        <input type="text" class="form-control" name="keyword" th:value="${searchKeyword}">
+                        <button type="submit" class="btn btn-primary">search</button>
+                    </div>
+                </form>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>
+                            ID
+                        </th>
+                        <th>
+                            name
+                        </th>
+                        <th>
+                            date
+                        </th>
+                        <th>
+                            sick
+                        </th>
+                        <th>
+                            score
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="p:${patientsListPageable}">
+                        <td th:text="${p.id}"></td>
+                        <td th:text="${p.name}"></td>
+                        <td th:text="${p.dateOfBirth}"></td>
+                        <td th:text="${p.sick}"></td>
+                        <td th:text="${p.score}"></td>
+                        <td th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
+                            <a
+                                    onclick="return confirm('are you sure ?')"
+                                    class="btn btn-outline-danger fw-light me-2"
+                                    th:href="@{/admin/delete(id=${p.id},page=${currentPage},size=${pageSize},keyword=${searchKeyword})}"
+                            >
+                                delete
+                            </a>
+                            <a
+                                    onclick="return confirm('are you sure ?')"
+                                    class="btn btn-outline-success fw-light"
+                                    th:href="@{/admin/edit(id=${p.id},page=${currentPage},size=${pageSize},keyword=${searchKeyword})}"
+                            >
+                                edit
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <ul class="nav nav-pills">
+                    <li th:each="page,status:${pages}">
+                        <a
+                                th:class="${status.index==currentPage?'btn btn-info me-2':'btn btn-outline-info me-2'}"
+                                th:text="${status.index}"
+                                th:href="@{/user/index-page(page=${status.index},size=${pageSize},keyword=${searchKeyword})}"
+                        ></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template">
+<head>
+    <meta charset="UTF-8">
+    <title>patients</title>
+    <link rel="stylesheet" href="webjars/bootstrap/5.3.3/css/bootstrap.min.css">
+</head>
+<body>
+<div layout:fragment="content">
+
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h4>authentication:</h4>
+            </div>
+            <div class="card-body">
+                <div class="col-6 offset-3">
+                    <form class="border border-3 p-5 rounded-3 shadow-lg" method="post" th:action="@{/login}">
+                        <div class=" mb-3">
+                            <label class="form-label" for="name">name:</label>
+                            <input id="name" type="text" class="form-control" name="username">
+                        </div>
+                        <div class=" mb-3">
+                            <label class="form-label" for="password">password:</label>
+                            <input id="password" type="password" class="form-control" name="password">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-check-label" for="remember">
+                                <input id="remember" type="checkbox" class="form-check-input" th:checked="remember-me" name="remember">
+                                Remember me
+                            </label>
+                        </div>
+
+                        <div class=" mb-3">
+                            <button type="submit" class="btn btn-outline-primary w-100">log in</button>
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
