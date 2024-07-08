@@ -45,7 +45,7 @@ This is a Spring Boot application designed for managing hospital patient records
     - Username: `khadija`, Password: `123` (Role: USER, ADMIN)
 
 ## Project Structure
-![image](https://github.com/bajadda1/hospital-spring-MVC/assets/143662918/65537047-9b9f-4d4c-a6ec-3eca61492052)
+![image](https://github.com/bajadda1/hospital-spring-MVC/assets/143662918/4dedcab0-796a-4277-9fb3-ca0a1caca01e)
 
 ## Endpoints
 - `GET /user/index`: List all patients
